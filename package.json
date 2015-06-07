@@ -1,0 +1,13 @@
+{
+  "name": "CUNE_Hermes",
+  "version": "0.1.0",
+  "repository": "https://github.com/cune/hermes",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-less": "~0.8.3",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-email-builder": "~3.0.1",
+    "grunt-processhtml": "^0.3.7",
+    "grunt-run-grunt": "~0.1.4"
+  }
+}

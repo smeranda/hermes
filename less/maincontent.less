@@ -1,0 +1,65 @@
+#main-content {
+	padding-top: 16px;
+	.sans-serif();
+
+	table {
+		text-align: center;
+
+		&.cune-story-headline td {
+			font-size: 28px;
+			line-height: 38px;
+			font-weight: 200px;
+			margin: 0;
+			text-align: center;
+			color: darken(@cune-card-text, 15%);
+			.sans-serif();
+		}
+
+		&.cune-story-content td {
+			text-align: center;
+			font-size: 16px;
+			line-height: 30px;
+			color: @cune-card-text;
+			.sans-serif();
+		}
+
+		&.cune-opening-content td {
+			text-align: left;
+			font-size: 16px;
+			line-height: 30px;
+			color: @cune-card-text;
+			.sans-serif();
+		}
+	}
+
+	.circle-headshot {
+		border-radius: 50%;
+		width: 80%;
+		max-width: 125px;
+		border: 5px solid #c9cbd3;
+		object-fit: contain;
+		object-position: center;
+	}
+
+	.cune-teal {
+		border-color: rgba(0,139,152,0.9);
+	}
+}
+
+.cune-card {
+	border-radius: 3px;
+	background-color: #ffffff;
+	text-align: center;
+	margin: 30px 0;
+
+	.cune-story-image img {
+		border-radius: 3px 3px 0 0;
+	}
+}
+
+.cune-card-cta {
+	border-radius: 3px;
+	background-color: @cune-blue;
+	color: @cune-white;
+	padding: 12px 24px;
+}
