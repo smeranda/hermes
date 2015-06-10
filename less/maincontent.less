@@ -30,6 +30,14 @@
 			color: @cune-card-text;
 			.sans-serif();
 		}
+
+		a:not(.cune-card-cta) {
+			color: @cune-teal;
+
+			.cune-card-cta {
+				color: #ffffff !important;
+			}
+		}
 	}
 
 	.circle-headshot {
@@ -42,7 +50,39 @@
 	}
 
 	.cune-teal {
-		border-color: rgba(0,139,152,0.9);
+		border-color: fadeout(@cune-teal, 10%);
+	}
+
+	.toc-box {
+
+		td {
+			text-align: left;
+			font-size: 16px;
+			line-height: 25px;
+			.sans-serif();
+			color: @cune-teal;
+			padding-bottom: 0;
+		}
+
+		ul, ol {
+			padding-left: 0;
+			margin-bottom: 0;
+			list-style-type: none;
+
+			li {
+				padding: 4px 0;
+				border-bottom: 1px solid darken(@cune-bg, 5%);
+			}
+		}
+
+		.toc-headline {
+			text-transform: uppercase;
+			font-weight: bold;
+			line-height: 1;
+			display: block;
+			text-align: left;
+			color: darken(@cune-card-text, 15%);
+		}
 	}
 }
 

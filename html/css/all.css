@@ -50,6 +50,12 @@ body,
   color: #838383;
   font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif;
 }
+#main-content table a:not(.cune-card-cta) {
+  color: #008b98;
+}
+#main-content table a:not(.cune-card-cta) .cune-card-cta {
+  color: #ffffff !important;
+}
 #main-content .circle-headshot {
   border-radius: 50%;
   width: 80%;
@@ -60,6 +66,33 @@ body,
 }
 #main-content .cune-teal {
   border-color: rgba(0, 139, 152, 0.9);
+}
+#main-content .toc-box td {
+  text-align: left;
+  font-size: 16px;
+  line-height: 25px;
+  font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif;
+  color: #008b98;
+  padding-bottom: 0;
+}
+#main-content .toc-box ul,
+#main-content .toc-box ol {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+#main-content .toc-box ul li,
+#main-content .toc-box ol li {
+  padding: 4px 0;
+  border-bottom: 1px solid #efe8e1;
+}
+#main-content .toc-box .toc-headline {
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 1;
+  display: block;
+  text-align: left;
+  color: #5d5d5d;
 }
 .cune-card {
   border-radius: 3px;
