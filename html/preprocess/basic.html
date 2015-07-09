@@ -8,6 +8,7 @@
                     <tr>
                         <td align="center">
                             <img src="http://www.cune.edu/files/7314/3292/5460/2TsYKDACXFhkgb07wkOF.jpg" alt="this is a test" />
+                            {% image "hero_image" label='Hero Image', alt='Hero Image', src='' width='580' %}
                         </td>
                     </tr>
                 </table>
@@ -21,7 +22,7 @@
                 <table width="85%" align="center" class="cune-story-headline">
                     <tr>
                         <td align="center">
-                            Spring term honors students named by Concordia University, Nebraska
+                            {% text "main_headline" label='Main Headline', value="Speak to your audience" %}    
                         </td>
                     </tr>
                 </table>
@@ -49,13 +50,56 @@
                 <table class="cune-story-cta" align="center">
                     <tr>
                         <td align="center">
-                            <a href="#" class="cune-card-cta">Card CTA</a>
+                            <!-- Insert CTA -->
+                            {% rich_text "main_content_cta" label="Main Content CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                            <!-- End CTA -->
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="75">
+        <tr height="46">
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                <table width="90%" align="center">
+                    <tr>
+                        <td class="wrapper last centered">
+                            <table class="cune-opening-content row" align="center">
+                                <tr>
+                                    <td class="wrapper">
+                                        <table class="columns three">
+                                            <tr>
+                                                <td class="center-content">
+                                                    <img src="http://www.cune.edu/files/cache/f8f409aceeab34c617023ae7e92c2201_f7658.jpg" alt="Photo of Adam Hengeveld" class="cune-teal circle-headshot" />
+                                                </td>
+                                                <td class="expander"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="wrapper last">
+                                        <table class="columns seven">
+                                            <tr>
+                                                <td class="center-content">
+                                                    Adam Hengeveld<br />
+                                                    Director of Alumni &amp; University Relations<br />
+                                                    800.535.5494, ext. 7341<br />
+                                                    adam.hengeveld@cune.edu
+                                                </td>
+                                                <td class="expander"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="expander"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46">
             <td>&nbsp;</td>
         </tr>
     </table>
