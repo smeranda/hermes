@@ -1,8 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <title>{% if content.html_title and content.html_title != '' %}{{ content.html_title }}{% else %}{{ content.body.subject }}{% endif %}</title>
+    {% if content.meta_description %}<meta name="description" content="{{ content.meta_description }}"/>{% endif %}
 
     <link type="text/css" rel="stylesheet" href="../css/ink.css" />
     <!-- Styles will be injected into <style> tag -->
@@ -18,6 +20,15 @@
                 <center>
                     <!-- Email Content -->
                     <span class="preview-text" style="display: none !important;">{% text "preview_text" label="Preview Text <span class=help-text>This will be used as the preview text displayed in the inbox of some email clients. It <strong>will not</strong> be displayed in the email. You should use between 50 - 85 characters.</span>", value="" %}</span>
+                    <!-- View as webpage link -->
+                    {% if content.create_page %}
+                        <div id="cune-web-option">
+                            Not rendering correctly? <a class="hubspot-mergetag" data-viewaswebpage="true" href="{{ view_as_page_url }}">View this email as a web page</a>.
+                        </div>
+                    {% endif %}
+                    <script type="application/ld+json">
+                        {% raw_html "json_ld" label='Enter JSON+ld <span class="help-text">Leverage Schema.org for better Gmail support</span>' %}
+                    </script>
                     <table id="header" width="100%">
                         <tr>
                             <td class="center" align="center">
@@ -35,7 +46,11 @@
                                                                     </td>
                                                                     <td class="six sub-columns last" align="right">
                                                                         <span class="template-label right" align="right">
-                                                                            <a href="#" class="cune-header-cta">Header CTA</a>
+                                                                            {% text "header_cta_label" label='Header CTA Label', export_to_template_context=True %}
+                                                                            {% text "header_cta_url" label='Header CTA url', export_to_template_context=True %}
+                                                                            {% if widget_data.header_cta_label.value and widget_data.header_cta_url.value != '' %}
+                                                                                <a href="{{ widget_data.header_cta_url.value }}" class="cune-header-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: rgba(255, 255, 255, 0.19999999999999996); padding: 12px 24px; text-align: right;">{{ widget_data.header_cta_label.value }}</a>
+                                                                            {% endif %}
                                                                         </span>
                                                                     </td>
                                                                     <td class="expander"></td>
@@ -64,6 +79,8 @@
                                                             <table class="columns twelve">
                                                                 <tr>
                                                                     <td>
+                                                                    <!-- End Header -->
+                                                                    <!-- Start Main -->
 <div data-hubspot-form-id="emailbody" class="hubspot-editable">
     <table class="cune-card">
         <tr>
@@ -72,6 +89,7 @@
                     <tr>
                         <td align="center">
                             <img src="http://www.cune.edu/files/7314/3292/5460/2TsYKDACXFhkgb07wkOF.jpg" alt="this is a test" />
+                            {% image "hero_image" label='Hero Image', alt='Hero Image', src='' width='580' %}
                         </td>
                     </tr>
                 </table>
@@ -85,7 +103,7 @@
                 <table width="85%" align="center" class="cune-story-headline">
                     <tr>
                         <td align="center">
-                            Spring term honors students named by Concordia University, Nebraska
+                            {% text "main_headline" label='Main Headline', value="Speak to your audience" %}    
                         </td>
                     </tr>
                 </table>
@@ -113,17 +131,62 @@
                 <table class="cune-story-cta" align="center">
                     <tr>
                         <td align="center">
-                            <a href="#" class="cune-card-cta">Card CTA</a>
+                            <!-- Insert CTA -->
+                            {% rich_text "main_content_cta" label="Main Content CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                            <!-- End CTA -->
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="75">
+        <tr height="46">
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                <table width="90%" align="center">
+                    <tr>
+                        <td class="wrapper last centered">
+                            <table class="cune-opening-content row" align="center">
+                                <tr>
+                                    <td class="wrapper">
+                                        <table class="columns three">
+                                            <tr>
+                                                <td class="center-content">
+                                                    <img src="http://www.cune.edu/files/cache/f8f409aceeab34c617023ae7e92c2201_f7658.jpg" alt="Photo of Adam Hengeveld" class="cune-teal circle-headshot" />
+                                                </td>
+                                                <td class="expander"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="wrapper last">
+                                        <table class="columns seven">
+                                            <tr>
+                                                <td class="center-content">
+                                                    Adam Hengeveld<br />
+                                                    Director of Alumni &amp; University Relations<br />
+                                                    800.535.5494, ext. 7341<br />
+                                                    adam.hengeveld@cune.edu
+                                                </td>
+                                                <td class="expander"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="expander"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46">
             <td>&nbsp;</td>
         </tr>
     </table>
 </div>
+                                                                     <!-- End Main -->
+                                                                     <!-- Start Footer -->
                                                                      </td>
                                                                 </tr>
                                                             </table>
@@ -154,24 +217,25 @@
                                                                 <tr>
                                                                     <td id="social-media" class="center">
                                                                         <center>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/8014/3345/1331/Facebook.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/1414/3345/1461/YouTube.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/4414/3345/1461/Instagram.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/2814/3345/1461/Twitter.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/5214/3345/1461/Google.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/3214/3345/1461/LinkendIn.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
+                                                                        <!-- #Start-HubHL# Facebook Icon -->
+                                                                            {% linked_image "facebook_icon" label="Facebook", align="right", alt="Join us on Facebook", height=50,  link="https://www.facebook.com/concordianebraska", src="http://www.cune.edu/files/8014/3345/1331/Facebook.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Facebook Icon -->
+                                                                        <!-- #Start-HubHL# Twitter Icon -->
+                                                                            {% linked_image "twitter_icon" label="Twitter", align="right", alt="Follow us on Twitter", height=50,  link="https://www.twitter.com/cune", src="http://www.cune.edu/files/2814/3345/1461/Twitter.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Twitter Icon -->
+                                                                        <!-- #Start-HubHL# LinkedIn Icon -->
+                                                                            {% linked_image "linkedin_icon" label="LinkedIn", align="right", alt="Join us on LinkedIn", height=50,  link="http://www.linkedin.com/groups?gid=3721035&amp;trk=myg_ugrp_ovr", src="http://www.cune.edu/files/3214/3345/1461/LinkendIn.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# LinkedIn Icon -->
+                                                                        <!-- #Start-HubHL# Instagram Icon -->
+                                                                            {% linked_image "instagram_icon" label="Instagram", align="right", alt="Follow us on Instagram", height=50, link="http://instagram.com/concordianebraska/", src="http://www.cune.edu/files/4414/3345/1461/Instagram.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Instagram Icon -->
+                                                                        <!-- #Start-HubHL# YouTube Icon -->
+                                                                            {% linked_image "youtube_icon" label="YouTube", align="right", alt="Subscribe on YouTube", height=50,  link="https://www.youtube.com/user/concordianebraska", src="http://www.cune.edu/files/1414/3345/1461/YouTube.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# YouTube Icon -->
+                                                                        <!-- #Start-HubHL# Google+ Icon -->
+                                                                            {% linked_image "google_icon" label="Google", align="right", alt="Follow us on Google+", height=50,  link="https://plus.google.com/107374583215130835483", src="http://www.cune.edu/files/5214/3345/1461/Google.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# YouTube Icon -->
+                                                                        <!-- #Start-HubHL# Google+ Icon -->
                                                                         </center>
                                                                     </td>
                                                                 </tr>
@@ -191,9 +255,7 @@
                                                                 <tr>
                                                                     <td id="opt-out" class="center">
                                                                         <center>
-                                                                            Concordia University, Nebraska | 800 N Columbia Ave | Seward, NE 68434<br />
-                                                                            You received this email because you are subscribed to Undergraduate Admissions from Concordia University, Nebraska.<br />
-                                                                            If you prefer not to receive emails from Concordia University, Nebraska you may unsubscribe or set your email preferences.
+                                                                            {{ site_settings.company_name }} | {{ site_settings.company_street_address_1 }} | {{ site_settings.company_city }}, {{ site_settings.company_state }} {{ site_settings.company_zip }}<br />{{ unsubscribe_section }}
                                                                         </center>
                                                                     </td>
                                                                 </tr>
