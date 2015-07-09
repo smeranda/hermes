@@ -1,8 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <title>{% if content.html_title and content.html_title != '' %}{{ content.html_title }}{% else %}{{ content.body.subject }}{% endif %}</title>
+    {% if content.meta_description %}<meta name="description" content="{{ content.meta_description }}"/>{% endif %}
 
     <link type="text/css" rel="stylesheet" href="../css/ink.css" />
     <!-- Styles will be injected into <style> tag -->
@@ -18,6 +20,15 @@
                 <center>
                     <!-- Email Content -->
                     <span class="preview-text" style="display: none !important;">{% text "preview_text" label="Preview Text <span class=help-text>This will be used as the preview text displayed in the inbox of some email clients. It <strong>will not</strong> be displayed in the email. You should use between 50 - 85 characters.</span>", value="" %}</span>
+                    <!-- View as webpage link -->
+                    {% if content.create_page %}
+                        <div id="cune-web-option">
+                            Not rendering correctly? <a class="hubspot-mergetag" data-viewaswebpage="true" href="{{ view_as_page_url }}">View this email as a web page</a>.
+                        </div>
+                    {% endif %}
+                    <script type="application/ld+json">
+                        {% raw_html "json_ld" label='Enter JSON+ld <span class="help-text">Leverage Schema.org for better Gmail support</span>' %}
+                    </script>
                     <table id="header" width="100%">
                         <tr>
                             <td class="center" align="center">
@@ -35,7 +46,11 @@
                                                                     </td>
                                                                     <td class="six sub-columns last" align="right">
                                                                         <span class="template-label right" align="right">
-                                                                            <a href="#" class="cune-header-cta">Header CTA</a>
+                                                                            {% text "header_cta_label" label='Header CTA Label', export_to_template_context=True %}
+                                                                            {% text "header_cta_url" label='Header CTA url', export_to_template_context=True %}
+                                                                            {% if widget_data.header_cta_label.value and widget_data.header_cta_url.value != '' %}
+                                                                                <a href="{{ widget_data.header_cta_url.value }}" class="cune-header-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: rgba(255, 255, 255, 0.19999999999999996); padding: 12px 24px; text-align: right;">{{ widget_data.header_cta_label.value }}</a>
+                                                                            {% endif %}
                                                                         </span>
                                                                     </td>
                                                                     <td class="expander"></td>
@@ -64,3 +79,5 @@
                                                             <table class="columns twelve">
                                                                 <tr>
                                                                     <td>
+                                                                    <!-- End Header -->
+                                                                    <!-- Start Main -->

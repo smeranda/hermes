@@ -1,3 +1,5 @@
+                                                                     <!-- End Main -->
+                                                                     <!-- Start Footer -->
                                                                      </td>
                                                                 </tr>
                                                             </table>
@@ -28,24 +30,25 @@
                                                                 <tr>
                                                                     <td id="social-media" class="center">
                                                                         <center>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/8014/3345/1331/Facebook.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/1414/3345/1461/YouTube.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/4414/3345/1461/Instagram.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/2814/3345/1461/Twitter.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/5214/3345/1461/Google.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/3214/3345/1461/LinkendIn.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
+                                                                        <!-- #Start-HubHL# Facebook Icon -->
+                                                                            {% linked_image "facebook_icon" label="Facebook", align="right", alt="Join us on Facebook", height=50,  link="https://www.facebook.com/concordianebraska", src="http://www.cune.edu/files/8014/3345/1331/Facebook.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Facebook Icon -->
+                                                                        <!-- #Start-HubHL# Twitter Icon -->
+                                                                            {% linked_image "twitter_icon" label="Twitter", align="right", alt="Follow us on Twitter", height=50,  link="https://www.twitter.com/cune", src="http://www.cune.edu/files/2814/3345/1461/Twitter.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Twitter Icon -->
+                                                                        <!-- #Start-HubHL# LinkedIn Icon -->
+                                                                            {% linked_image "linkedin_icon" label="LinkedIn", align="right", alt="Join us on LinkedIn", height=50,  link="http://www.linkedin.com/groups?gid=3721035&amp;trk=myg_ugrp_ovr", src="http://www.cune.edu/files/3214/3345/1461/LinkendIn.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# LinkedIn Icon -->
+                                                                        <!-- #Start-HubHL# Instagram Icon -->
+                                                                            {% linked_image "instagram_icon" label="Instagram", align="right", alt="Follow us on Instagram", height=50, link="http://instagram.com/concordianebraska/", src="http://www.cune.edu/files/4414/3345/1461/Instagram.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Instagram Icon -->
+                                                                        <!-- #Start-HubHL# YouTube Icon -->
+                                                                            {% linked_image "youtube_icon" label="YouTube", align="right", alt="Subscribe on YouTube", height=50,  link="https://www.youtube.com/user/concordianebraska", src="http://www.cune.edu/files/1414/3345/1461/YouTube.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# YouTube Icon -->
+                                                                        <!-- #Start-HubHL# Google+ Icon -->
+                                                                            {% linked_image "google_icon" label="Google", align="right", alt="Follow us on Google+", height=50,  link="https://plus.google.com/107374583215130835483", src="http://www.cune.edu/files/5214/3345/1461/Google.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# YouTube Icon -->
+                                                                        <!-- #Start-HubHL# Google+ Icon -->
                                                                         </center>
                                                                     </td>
                                                                 </tr>
@@ -65,9 +68,7 @@
                                                                 <tr>
                                                                     <td id="opt-out" class="center">
                                                                         <center>
-                                                                            Concordia University, Nebraska | 800 N Columbia Ave | Seward, NE 68434<br />
-                                                                            You received this email because you are subscribed to Undergraduate Admissions from Concordia University, Nebraska.<br />
-                                                                            If you prefer not to receive emails from Concordia University, Nebraska you may unsubscribe or set your email preferences.
+                                                                            {{ site_settings.company_name }} | {{ site_settings.company_street_address_1 }} | {{ site_settings.company_city }}, {{ site_settings.company_state }} {{ site_settings.company_zip }}<br />{{ unsubscribe_section }}
                                                                         </center>
                                                                     </td>
                                                                 </tr>
