@@ -67,10 +67,6 @@ table {
 }
 
 td { 
-  word-break: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
   border-collapse: collapse !important; 
 }
 
