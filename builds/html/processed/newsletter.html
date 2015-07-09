@@ -1,8 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
+    <title>{% if content.html_title and content.html_title != '' %}{{ content.html_title }}{% else %}{{ content.body.subject }}{% endif %}</title>
+    {% if content.meta_description %}<meta name="description" content="{{ content.meta_description }}">{% endif %}
 
     
     <!-- Styles will be injected into <style> tag -->
@@ -146,31 +148,44 @@
 <body style="color: #222222; background-color: #f8f5f2; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0; min-width: 100%; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; width: 100%;">
     <table class="body" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; background-color: #f8f5f2; text-align: left; height: 100%; width: 100%; padding: 0; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; color: #222222;">
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td class="center" align="center" valign="top" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; text-align: center; border-collapse: collapse;">
+            <td class="center" align="center" valign="top" style="padding: 0; vertical-align: top; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; text-align: center; border-collapse: collapse;">
                 <center style="width: 100%; min-width: 580px;">
                     <!-- Email Content -->
                     <span class="preview-text" style="display: none !important;">{% text "preview_text" label="Preview Text <span class="help-text">This will be used as the preview text displayed in the inbox of some email clients. It <strong>will not</strong> be displayed in the email. You should use between 50 - 85 characters.</span>", value="" %}</span>
+                    <!-- View as webpage link -->
+                    {% if content.create_page %}
+                        <div id="cune-web-option" style="padding: 0.5em 0; font-size: 0.75em;">
+                            Not rendering correctly? <a class="hubspot-mergetag" data-viewaswebpage="true" href="{{ view_as_page_url }}" style="color: #2ba6cb; text-decoration: none;">View this email as a web page</a>.
+                        </div>
+                    {% endif %}
+                    <script type="application/ld+json">
+                        {% raw_html "json_ld" label='Enter JSON+ld <span class="help-text">Leverage Schema.org for better Gmail support</span>' %}
+                    </script>
                     <table id="header" width="100%" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 12px 0; background-color: #002855;">
                         <tr style="padding: 0; vertical-align: top; text-align: left;">
-                            <td class="center" align="center" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: center; padding: 4px 0; border-collapse: collapse;">
+                            <td class="center" align="center" style="vertical-align: top; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; text-align: center; padding: 4px 0; border-collapse: collapse;">
                                 <center style="width: 100%; min-width: 580px;">
                                     <table class="container" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: inherit; width: 580px; margin: 0 auto;">
                                         <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                            <td class="row" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; font-size: 14px; border-collapse: collapse;">
+                                            <td class="row" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                                                 <table style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left;">
                                                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                        <td class="wrapper last" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; text-align: left; -webkit-hyphens: auto; font-weight: normal; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; padding: 10px 20px 0px 0px; position: relative; padding-right: 0px; border-collapse: collapse;">
+                                                        <td class="wrapper last" style="color: #222222; font-size: 14px; vertical-align: top; text-align: left; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; padding: 10px 20px 0px 0px; position: relative; padding-right: 0px; border-collapse: collapse;">
                                                             <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; margin: 0 auto; width: 580px;">
                                                                 <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                                    <td class="six sub-columns" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; text-align: left; -webkit-hyphens: auto; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; color: #222222; min-width: 0px; padding: 0px 0px 10px; padding-right: 10px; width: 50%; border-collapse: collapse;">
+                                                                    <td class="six sub-columns" style="font-size: 14px; line-height: 19px; text-align: left; margin: 0; font-weight: normal; vertical-align: top; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; min-width: 0px; padding: 0px 0px 10px; padding-right: 10px; width: 50%; border-collapse: collapse;">
                                                                         <img src="http://info.cune.edu/hs-fs/hub/213616/file-1290180485-png/logos/logo_white.png" width="161" height="35" id="cune-logo" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;">
                                                                     </td>
-                                                                    <td class="six sub-columns last" align="right" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; -webkit-hyphens: auto; color: #222222; min-width: 0px; padding: 0px 0px 10px; padding-right: 0px; width: 50%; text-align: right; vertical-align: middle; border-collapse: collapse;">
+                                                                    <td class="six sub-columns last" align="right" style="font-size: 14px; line-height: 19px; margin: 0; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; min-width: 0px; padding: 0px 0px 10px; padding-right: 0px; width: 50%; text-align: right; vertical-align: middle; border-collapse: collapse;">
                                                                         <span class="template-label right" align="right">
-                                                                            <a href="#" class="cune-header-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: rgba(255, 255, 255, 0.19999999999999996); padding: 12px 24px; text-align: right;">Header CTA</a>
+                                                                            {% text "header_cta_label" label='Header CTA Label', export_to_template_context=True %}
+                                                                            {% text "header_cta_url" label='Header CTA url', export_to_template_context=True %}
+                                                                            {% if widget_data.header_cta_label.value and widget_data.header_cta_url.value != '' %}
+                                                                                <a href="{{ widget_data.header_cta_url.value }}" class="cune-header-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: rgba(255, 255, 255, 0.19999999999999996); padding: 12px 24px; text-align: right;">{{ widget_data.header_cta_label.value }}</a>
+                                                                            {% endif %}
                                                                         </span>
                                                                     </td>
-                                                                    <td class="expander" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; text-align: left; -webkit-hyphens: auto; font-weight: normal; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; width: 0px; visibility: hidden; padding: 0; border-collapse: collapse;"></td>
+                                                                    <td class="expander" style="color: #222222; font-size: 14px; vertical-align: top; text-align: left; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; width: 0px; visibility: hidden; padding: 0; border-collapse: collapse;"></td>
                                                                 </tr>
                                                             </table>
                                                         </td>
@@ -185,365 +200,766 @@
                     </table>
                     <table id="main-content" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left; padding-top: 16px; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif;">
                         <tr style="padding: 0; vertical-align: top; text-align: left;">
-                            <td class="center" align="center" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; text-align: center; border-collapse: collapse;">
+                            <td class="center" align="center" style="padding: 0; vertical-align: top; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; text-align: center; border-collapse: collapse;">
                                 <center style="width: 100%; min-width: 580px;">
                                     <table class="container" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; width: 580px; margin: 0 auto; text-align: center;">
                                         <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; font-size: 14px; border-collapse: collapse;">
+                                            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                                                 <table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; padding: 0px; width: 100%; position: relative; display: block; text-align: center;">
                                                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                        <td align="center" class="wrapper last" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; text-align: left; -webkit-hyphens: auto; font-weight: normal; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; padding: 10px 20px 0px 0px; position: relative; padding-right: 0px; border-collapse: collapse;">
+                                                        <td align="center" class="wrapper last" style="color: #222222; font-size: 14px; vertical-align: top; text-align: left; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; padding: 10px 20px 0px 0px; position: relative; padding-right: 0px; border-collapse: collapse;">
                                                             <table class="columns twelve" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; margin: 0 auto; width: 580px; text-align: center;">
                                                                 <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                                    <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+                                                                    <td style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+                                                                    <!-- End Header -->
+                                                                    <!-- Start Main -->
 <div data-hubspot-form-id="emailbody" class="hubspot-editable">
-    <table width="100%" class="toc-box" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
-        <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td class="" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; font-weight: normal; margin: 0; padding: 0px 0px 10px; color: #008b98; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-size: 16px; padding-bottom: 0; line-height: 25px; text-align: left; border-collapse: collapse;">
-                <span class="toc-headline" style="text-transform: uppercase; font-weight: bold; line-height: 1; display: block; text-align: left; color: #5d5d5d;">In This Issue</span>
-                <ol style="padding-left: 0; margin-bottom: 0; list-style-type: none;">
-                    <li style="padding: 4px 0; border-bottom: 1px solid #efe8e1;">
-                        <a href="#" style="text-decoration: none; color: #008b98;">Spring term honors students named</a>
+    <!--
+    <table width="100%" class="toc-box" align="center">
+        <tr>
+            <td class="">
+                <span class="toc-headline">In This Issue</span>
+                <ol>
+                    <li>
+                        <a href="#">Spring term honors students named</a>
                     </li>
-                    <li style="padding: 4px 0; border-bottom: 1px solid #efe8e1;">
-                        <a href="#" style="text-decoration: none; color: #008b98;">Theatre honor society inducts new members</a>
+                    <li>
+                        <a href="#">Theatre honor society inducts new members</a>
                     </li>
-                    <li style="padding: 4px 0; border-bottom: 1px solid #efe8e1;">
-                        <a href="#" style="text-decoration: none; color: #008b98;">May 2015 distinguished graduates</a>
+                    <li>
+                        <a href="#">May 2015 distinguished graduates</a>
                     </li>
-                
-            </ol></td>
+                </li>
+            </td>
         </tr>
     </table>
+    -->
     <table class="cune-card" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; border-radius: 3px; background-color: #ffffff; margin: 30px 0; text-align: center;">
-        <tr height="32" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
-        </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;"> 
-                <table width="90%" class="cune-opening-content" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+            <td align="center" style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+                <table width="100%" align="center" class="cune-story-image" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; font-weight: normal; margin: 0; padding: 0px 0px 10px; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; text-align: left; border-collapse: collapse;">
-                            Hello CONTACT.PREFERRED_NAME,
-                            <br>
-                            <br>
-                            As I write to you, the campus has calmed greatly.
-                            <br>
-                            <br>
-                            It&#8217;s a strange dichotomy to have a campus that exists for the sole purpose of equipping men and women for a future of service be largely empty, save for the faculty and staff preparing for a new year to do just that. What makes the contrast even more dramatic is that the Concordia community is now descending off the mountaintop weekend of commencement and the Golden Reunion for the Class of 1965.
-                            <br>
-                            <br>
-                            The 90 classmates and guests of the Class of 1965 came together, some after 50 years apart, to this place and enjoyed looking back on a time of fond memories with great joy (see attendees and reunion details here). We are thankful that through their experience, the classmates decided to endow a $50,000 scholarship. This scholarship will certainly become a great blessing to future students for generations to come. Thank you, members of the Class of 1965&#8212;you have blessed our alma mater in many ways!
-                            <br>
-                            <br>
-                            We also celebrated 563 graduates earning master&#8217;s or bachelor&#8217;s degrees this year. These students are incredible alumni, ready to answer God&#8217;s call to learn, serve and lead in the church and world. I invite you to view the Class of 2015 video and hear our graduates reflect on their experiences at Concordia in their own words.
-                            <br>
-                            <br>
-                            Concordia University, Nebraska is so richly blessed. 
+                        <td align="center" style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+                            <img src="http://www.cune.edu/files/7314/3292/5460/2TsYKDACXFhkgb07wkOF.jpg" alt="this is a test" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;">
+                            {% image "hero_image" label='Hero Image', alt='Hero Image', src='' width='580' %}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
         </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" valign="top" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+                <table width="85%" align="center" class="cune-story-headline" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="vertical-align: top; padding: 0px 0px 10px; text-align: center; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; line-height: 38px; font-size: 28px; border-collapse: collapse;">
+                            {% text "main_headline" label='Main Headline', value="Speak to your audience" %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+                <table width="78%" class="cune-story-content" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="vertical-align: top; font-weight: normal; margin: 0; padding: 0px 0px 10px; text-align: center; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
+                            {% rich_text "main_content" label="Main Content Area" html='<div>Tell them something they want to hear!</div>' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" valign="top" style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+                <table class="cune-story-cta" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+                            <!-- Insert CTA -->
+                            {% rich_text "main_content_cta" label="Main Content CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                            <!-- End CTA -->
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" valign="top" style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
                 <table width="90%" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td class="wrapper last centered" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; text-align: left; -webkit-hyphens: auto; font-weight: normal; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; position: relative; padding: 0px 0px 10px; padding-right: 0px; border-collapse: collapse;">
-                            <table class="cune-opening-content row" align="center" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; padding: 0px; width: 100%; position: relative; display: block; text-align: center;">
-                                <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                    <td class="wrapper" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; font-weight: normal; margin: 0; position: relative; padding: 0px 0px 10px; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-size: 16px; line-height: 30px; text-align: left; border-collapse: collapse;">
-                                        <table class="columns three" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; margin: 0 auto; width: 130px; text-align: center;">
-                                            <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                <td class="center-content" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; font-weight: normal; margin: 0; padding: 0px 0px 10px; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; text-align: left; border-collapse: collapse;">
-                                                    <img src="http://www.cune.edu/files/cache/f8f409aceeab34c617023ae7e92c2201_f7658.jpg" alt="Photo of Adam Hengeveld" class="cune-teal circle-headshot" style="clear: both; outline: none; -ms-interpolation-mode: bicubic; display: block; text-decoration: none; float: left; max-width: 125px; width: 80%; border-radius: 50%; border: 5px solid #c9cbd3; object-fit: contain; object-position: center; border-color: rgba(0, 139, 152, 0.9);">
-                                                </td>
-                                                <td class="expander" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; margin: 0; font-weight: normal; vertical-align: top; -webkit-hyphens: auto; width: 0px; visibility: hidden; text-align: left; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; padding: 0; border-collapse: collapse;"></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td class="wrapper last" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; margin: 0; font-weight: normal; vertical-align: top; -webkit-hyphens: auto; position: relative; padding: 0px 0px 10px; padding-right: 0px; text-align: left; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
-                                        <table class="columns seven" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; margin: 0 auto; width: 330px; text-align: center;">
-                                            <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                <td class="center-content" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; font-weight: normal; margin: 0; padding: 0px 0px 10px; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; text-align: left; border-collapse: collapse;">
-                                                    Adam Hengeveld<br>
-                                                    Director of Alumni &amp; University Relations<br>
-                                                    800.535.5494, ext. 7341<br>
-                                                    adam.hengeveld@cune.edu
-                                                </td>
-                                                <td class="expander" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; margin: 0; font-weight: normal; vertical-align: top; -webkit-hyphens: auto; width: 0px; visibility: hidden; text-align: left; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; padding: 0; border-collapse: collapse;"></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td class="expander" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; margin: 0; font-weight: normal; vertical-align: top; -webkit-hyphens: auto; width: 0px; visibility: hidden; text-align: left; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; padding: 0; border-collapse: collapse;"></td>
-                                </tr>
-                            </table>
-                        </td>
+                        <td class="wrapper last centered" style="color: #222222; font-size: 14px; vertical-align: top; text-align: left; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; position: relative; padding: 0px 0px 10px; padding-right: 0px; border-collapse: collapse;">
+                            {% widget_block rich_text "sign_off" overrideable=True, label='Sign Off', no_wrapper=True  %}
+                                {% widget_attribute "html" %}
+                                <table class="cune-opening-content row" align="center" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; padding: 0px; width: 100%; position: relative; display: block; text-align: center;">
+                                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                                        <td class="wrapper" style="vertical-align: top; font-weight: normal; margin: 0; position: relative; padding: 0px 0px 10px; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-size: 16px; text-align: left; line-height: 30px; border-collapse: collapse;">
+                                            <table class="columns three" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; margin: 0 auto; width: 130px; text-align: center;">
+                                                    <td class="center-content" style="vertical-align: top; font-weight: normal; margin: 0; padding: 0px 0px 10px; text-align: left; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
+                                                        <img src="http://www.cune.edu/files/cache/f8f409aceeab34c617023ae7e92c2201_f7658.jpg" alt="Photo of Adam Hengeveld" class="cune-teal circle-headshot" style="clear: both; outline: none; -ms-interpolation-mode: bicubic; display: block; text-decoration: none; float: left; max-width: 125px; width: 80%; border-radius: 50%; border: 5px solid #c9cbd3; object-fit: contain; object-position: center; border-color: rgba(0, 139, 152, 0.9);">
+                                                    </td>
+                                                    <td class="expander" style="vertical-align: top; font-weight: normal; margin: 0; visibility: hidden; width: 0px; color: #838383; line-height: 30px; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-size: 16px; text-align: left; padding: 0; border-collapse: collapse;"></td>
+                                                </table></td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="wrapper last" style="color: #222222; font-size: 14px; vertical-align: top; text-align: left; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; position: relative; padding: 0px 0px 10px; padding-right: 0px; border-collapse: collapse;">
+                                            <table class="columns seven" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; margin: 0 auto; width: 330px; text-align: center;">
+                                                    <td class="center-content" style="vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+                                                        Sign off here
+                                                    </td>
+                                                    <td class="expander" style="color: #222222; font-size: 14px; vertical-align: top; text-align: left; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; width: 0px; visibility: hidden; padding: 0; border-collapse: collapse;"></td>
+                                                </table></td></tr>
+                                            </table>
+                                        </td>
+                                        <td class="expander" style="color: #222222; font-size: 14px; vertical-align: top; text-align: left; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; width: 0px; visibility: hidden; padding: 0; border-collapse: collapse;"></td>
+                                    </tr>
+                                </table>
+                                {% end_widget_attribute %}
+                            {% end_widget_block %}
+                        </div></td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="75" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
     </table>
+    <!-- Start Extra Card 1 -->
+    {% text "article1_header" label='Article 1 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article1_content" label='Article 1 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article1_header.value and widget_data.article1_content.html != '' %}
     <table class="cune-card" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; border-radius: 3px; background-color: #ffffff; margin: 30px 0; text-align: center;">
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table width="100%" align="center" class="cune-story-image" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
-                            <img src="http://www.cune.edu/files/7314/3292/5460/2TsYKDACXFhkgb07wkOF.jpg" alt="this is a test" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% image "article1_hero_image" label='Article 1 Hero Image', alt='Article 1 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article1_header.value and widget_data.article1_content.html != '' %}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table width="85%" align="center" class="cune-story-headline" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; padding: 0px 0px 10px; line-height: 38px; font-size: 28px; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; text-align: center; border-collapse: collapse;">
-                            Spring term honors students named
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: center; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; line-height: 38px; font-size: 28px; border-collapse: collapse;">
+                            {{ widget_data.article1_header.value }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="25" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table width="78%" class="cune-story-content" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; font-weight: normal; margin: 0; padding: 0px 0px 10px; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; text-align: center; border-collapse: collapse;">
-                            The top 25 percent of all undergraduate students who complete at least 12 credit hours qualify for the honors list.
+                        <td align="center" style="padding: 0; vertical-align: top; font-weight: normal; margin: 0; text-align: center; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
+                            {{ widget_data.article1_content.html }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" valign="top" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" valign="top" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table class="cune-story-cta" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
-                            <a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">See the list</a>
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% rich_text "article1_cta" label="Article 1 CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                        {% if widget_data.article1_header.value and widget_data.article1_content.html != '' %}    
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="75" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
     </table>
+    {% endif %}
+    <!-- End Extra Card 1 -->
+    <!-- Start Extra Card 2 -->
+    {% text "article2_header" label='Article 2 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article2_content" label='Article 2 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article2_header.value and widget_data.article2_content.html != '' %}
     <table class="cune-card" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; border-radius: 3px; background-color: #ffffff; margin: 30px 0; text-align: center;">
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table width="100%" align="center" class="cune-story-image" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
-                            <img src="http://www.cune.edu/files/3114/3352/9467/WbC7xwlnPdIHGMASQiUs.jpg" alt="this is a test" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% image "article2_hero_image" label='Article 2 Hero Image', alt='Article 2 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article2_header.value and widget_data.article2_content.html != '' %}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table width="85%" align="center" class="cune-story-headline" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; padding: 0px 0px 10px; line-height: 38px; font-size: 28px; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; text-align: center; border-collapse: collapse;">
-                            Theatre honor society inducts new members
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: center; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; line-height: 38px; font-size: 28px; border-collapse: collapse;">
+                            {{ widget_data.article2_header.value }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="25" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table width="78%" class="cune-story-content" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; font-weight: normal; margin: 0; padding: 0px 0px 10px; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; text-align: center; border-collapse: collapse;">
-                            The Omega Lambda chapter of Alpha Psi Omega, a theatre national honor society, inducted new members this spring. The society recognizes student involvement in theatre arts programs.
+                        <td align="center" style="padding: 0; vertical-align: top; font-weight: normal; margin: 0; text-align: center; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
+                            {{ widget_data.article2_content.html }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" valign="top" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" valign="top" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table class="cune-story-cta" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
-                            <a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">See the Inductees</a>
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% rich_text "article2_cta" label="Article 2 CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                        {% if widget_data.article2_header.value and widget_data.article2_content.html != '' %}    
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="75" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
     </table>
+    {% endif %}
+    <!-- End Extra Card 2 -->
+    <!-- Start Extra Card 3 -->
+    {% text "article3_header" label='Article 3 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article2_content" label='Article 3 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article3_header.value and widget_data.article3_content.html != '' %}
     <table class="cune-card" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; border-radius: 3px; background-color: #ffffff; margin: 30px 0; text-align: center;">
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table width="100%" align="center" class="cune-story-image" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
-                            <img src="http://www.cune.edu/files/3114/3172/3866/0M5ENWGfTbS-rPQb38aM.jpg" alt="this is a test" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% image "article3_hero_image" label='Article 3 Hero Image', alt='Article 3 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article3_header.value and widget_data.article3_content.html != '' %}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table width="85%" align="center" class="cune-story-headline" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; padding: 0px 0px 10px; line-height: 38px; font-size: 28px; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; text-align: center; border-collapse: collapse;">
-                            May 2015 distinguished graduates
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: center; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; line-height: 38px; font-size: 28px; border-collapse: collapse;">
+                            {{ widget_data.article3_header.value }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="25" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table width="78%" class="cune-story-content" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; vertical-align: top; -webkit-hyphens: auto; font-weight: normal; margin: 0; padding: 0px 0px 10px; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; text-align: center; border-collapse: collapse;">
-                            We announced our May 2015 graduates who graduated with distinction or high distinction honors based on their academic achievements.
+                        <td align="center" style="padding: 0; vertical-align: top; font-weight: normal; margin: 0; text-align: center; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
+                            {{ widget_data.article3_content.html }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
         <tr style="padding: 0; vertical-align: top; text-align: left;">
-            <td align="center" valign="top" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
+            <td align="center" valign="top" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                 <table class="cune-story-cta" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                        <td align="center" style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">
-                            <a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Review the list</a>
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% rich_text "article3_cta" label="Article 3 CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                        {% if widget_data.article3_header.value and widget_data.article3_content.html != '' %}    
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr height="75" style="padding: 0; vertical-align: top; text-align: left;">
-            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; font-size: 14px; padding: 0px 0px 10px; border-collapse: collapse;">&nbsp;</td>
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
         </tr>
     </table>
-</div>
+    {% endif %}
+    <!-- End Extra Card 3 -->
+    <!-- Start Extra Card 4 -->
+    {% text "article4_header" label='Article 4 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article4_content" label='Article 4 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article4_header.value and widget_data.article4_content.html != '' %}
+    <table class="cune-card" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; border-radius: 3px; background-color: #ffffff; margin: 30px 0; text-align: center;">
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="100%" align="center" class="cune-story-image" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% image "article4_hero_image" label='Article 4 Hero Image', alt='Article 4 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article4_header.value and widget_data.article4_content.html != '' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="85%" align="center" class="cune-story-headline" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: center; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; line-height: 38px; font-size: 28px; border-collapse: collapse;">
+                            {{ widget_data.article4_header.value }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="78%" class="cune-story-content" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; font-weight: normal; margin: 0; text-align: center; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
+                            {{ widget_data.article4_content.html }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" valign="top" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table class="cune-story-cta" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% rich_text "article4_cta" label="Article 4 CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                        {% if widget_data.article4_header.value and widget_data.article4_content.html != '' %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="75" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!-- End Extra Card 4 -->
+    <!-- Start Extra Card 5 -->
+    {% text "article5_header" label='Article 5 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article5_content" label='Article 5 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article5_header.value and widget_data.article5_content.html != '' %}
+    <table class="cune-card" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; border-radius: 3px; background-color: #ffffff; margin: 30px 0; text-align: center;">
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="100%" align="center" class="cune-story-image" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% image "article5_hero_image" label='Article 5 Hero Image', alt='Article 5 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article5_header.value and widget_data.article5_content.html != '' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="85%" align="center" class="cune-story-headline" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: center; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; line-height: 38px; font-size: 28px; border-collapse: collapse;">
+                            {{ widget_data.article5_header.value }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="78%" class="cune-story-content" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; font-weight: normal; margin: 0; text-align: center; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
+                            {{ widget_data.article5_content.html }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" valign="top" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table class="cune-story-cta" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% rich_text "article5_cta" label="Article 5 CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                        {% if widget_data.article5_header.value and widget_data.article5_content.html != '' %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="75" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!-- End Extra Card 5 -->
+    <!-- Start Extra Card 6 -->
+    {% text "article6_header" label='Article 6 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article6_content" label='Article 4 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article6_header.value and widget_data.article6_content.html != '' %}
+    <table class="cune-card" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; border-radius: 3px; background-color: #ffffff; margin: 30px 0; text-align: center;">
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="100%" align="center" class="cune-story-image" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% image "article6_hero_image" label='Article 6 Hero Image', alt='Article 6 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article6_header.value and widget_data.article6_content.html != '' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="85%" align="center" class="cune-story-headline" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: center; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; line-height: 38px; font-size: 28px; border-collapse: collapse;">
+                            {{ widget_data.article6_header.value }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="78%" class="cune-story-content" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; font-weight: normal; margin: 0; text-align: center; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
+                            {{ widget_data.article6_content.html }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" valign="top" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table class="cune-story-cta" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% rich_text "article6_cta" label="Article 6 CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                        {% if widget_data.article6_header.value and widget_data.article6_content.html != '' %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="75" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!-- End Extra Card 6 -->
+    <!-- Start Extra Card 7 -->
+    {% text "article7_header" label='Article 7 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article7_content" label='Article 7 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article7_header.value and widget_data.article7_content.html != '' %}
+    <table class="cune-card" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; border-radius: 3px; background-color: #ffffff; margin: 30px 0; text-align: center;">
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="100%" align="center" class="cune-story-image" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% image "article7_hero_image" label='Article 7 Hero Image', alt='Article 7 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article7_header.value and widget_data.article7_content.html != '' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="85%" align="center" class="cune-story-headline" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: center; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; line-height: 38px; font-size: 28px; border-collapse: collapse;">
+                            {{ widget_data.article7_header.value }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="78%" class="cune-story-content" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; font-weight: normal; margin: 0; text-align: center; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
+                            {{ widget_data.article7_content.html }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" valign="top" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table class="cune-story-cta" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% rich_text "article7_cta" label="Article 7 CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                        {% if widget_data.article7_header.value and widget_data.article7_content.html != '' %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="75" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!-- End Extra Card 7 -->
+    <!-- Start Extra Card 8 -->
+    {% text "article8_header" label='Article 8 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article8_content" label='Article 8 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article8_header.value and widget_data.article8_content.html != '' %}
+    <table class="cune-card" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; border-radius: 3px; background-color: #ffffff; margin: 30px 0; text-align: center;">
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="100%" align="center" class="cune-story-image" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% image "article8_hero_image" label='Article 8 Hero Image', alt='Article 8 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article8_header.value and widget_data.article8_content.html != '' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="85%" align="center" class="cune-story-headline" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: center; color: #5d5d5d; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; font-weight: 200px; margin: 0; line-height: 38px; font-size: 28px; border-collapse: collapse;">
+                            {{ widget_data.article8_header.value }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table width="78%" class="cune-story-content" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; font-weight: normal; margin: 0; text-align: center; color: #838383; font-family: 'Gotham Narrow', Helvetica, Tahoma, Verdana, Segoe, sans-serif; line-height: 30px; font-size: 16px; border-collapse: collapse;">
+                            {{ widget_data.article8_content.html }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+        <tr style="padding: 0; vertical-align: top; text-align: left;">
+            <td align="center" valign="top" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                <table class="cune-story-cta" align="center" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: center;">
+                    <tr style="padding: 0; vertical-align: top; text-align: left;">
+                        <td align="center" style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
+                        {% endif %}
+                            {% rich_text "article8_cta" label="Article 8 CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                        {% if widget_data.article8_header.value and widget_data.article8_content.html != '' %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="75" style="padding: 0; vertical-align: top; text-align: left;">
+            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!-- End Extra Card 8 -->
+
+                                                                     <!-- End Main -->
+                                                                     <!-- Start Footer -->
                                                                      </td>
                                                                 </tr>
                                                             </table>
-                                                        </td>
-                                                        <td class="expander" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; text-align: left; -webkit-hyphens: auto; font-weight: normal; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; width: 0px; visibility: hidden; padding: 0; border-collapse: collapse;">
+                                                        </center></td>
+                                                        <td class="expander" style="color: #222222; font-size: 14px; vertical-align: top; text-align: left; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; width: 0px; visibility: hidden; padding: 0; border-collapse: collapse;">
                                                             
                                                         </td>
                                                     </tr>
                                                 </table>
-                                            </td>
+                                            </center></td>
                                         </tr>                                            
                                     </table>
-                                </center>
-                            </td>
-                        </tr>
-                    </table>
+                                
+                            
+                        
+                    
                     <table id="footer" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left;">
                         <tr style="padding: 0; vertical-align: top; text-align: left;">
-                            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; font-size: 14px; border-collapse: collapse;">
+                            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                                 <center style="width: 100%; min-width: 580px;">
                                     <table class="container" style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: inherit; width: 580px; margin: 0 auto;">
                                         <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                            <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; font-size: 14px; border-collapse: collapse;">
+                                            <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">
                                                 <table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0px; width: 100%; position: relative; display: block;">
                                                     <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                        <td class="wrapper last" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; text-align: left; -webkit-hyphens: auto; font-weight: normal; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; padding: 10px 20px 0px 0px; position: relative; padding-right: 0px; border-collapse: collapse;">
+                                                        <td class="wrapper last" style="color: #222222; font-size: 14px; vertical-align: top; text-align: left; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; padding: 10px 20px 0px 0px; position: relative; padding-right: 0px; border-collapse: collapse;">
                                                             <table style="border-spacing: 0; border-collapse: collapse; padding: 0; vertical-align: top; text-align: left;">
                                                                 <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                                    <td id="social-media" class="center" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; text-align: center; border-collapse: collapse;">
+                                                                    <td id="social-media" class="center" style="padding: 0; vertical-align: top; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; text-align: center; border-collapse: collapse;">
                                                                         <center style="width: 100%; min-width: 580px;">
-                                                                            <a href="#" style="color: #2ba6cb; text-decoration: none;">
-                                                                                <img src="http://www.cune.edu/files/8014/3345/1331/Facebook.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;">
-                                                                            </a>
-                                                                            <a href="#" style="color: #2ba6cb; text-decoration: none;">
-                                                                                <img src="http://www.cune.edu/files/1414/3345/1461/YouTube.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;">
-                                                                            </a>
-                                                                            <a href="#" style="color: #2ba6cb; text-decoration: none;">
-                                                                                <img src="http://www.cune.edu/files/4414/3345/1461/Instagram.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;">
-                                                                            </a>
-                                                                            <a href="#" style="color: #2ba6cb; text-decoration: none;">
-                                                                                <img src="http://www.cune.edu/files/2814/3345/1461/Twitter.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;">
-                                                                            </a>
-                                                                            <a href="#" style="color: #2ba6cb; text-decoration: none;">
-                                                                                <img src="http://www.cune.edu/files/5214/3345/1461/Google.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;">
-                                                                            </a>
-                                                                            <a href="#" style="color: #2ba6cb; text-decoration: none;">
-                                                                                <img src="http://www.cune.edu/files/3214/3345/1461/LinkendIn.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;">
-                                                                            </a>
+                                                                        <!-- #Start-HubHL# Facebook Icon -->
+                                                                            {% linked_image "facebook_icon" label="Facebook", align="right", alt="Join us on Facebook", height=50,  link="https://www.facebook.com/concordianebraska", src="http://www.cune.edu/files/8014/3345/1331/Facebook.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Facebook Icon -->
+                                                                        <!-- #Start-HubHL# Twitter Icon -->
+                                                                            {% linked_image "twitter_icon" label="Twitter", align="right", alt="Follow us on Twitter", height=50,  link="https://www.twitter.com/cune", src="http://www.cune.edu/files/2814/3345/1461/Twitter.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Twitter Icon -->
+                                                                        <!-- #Start-HubHL# LinkedIn Icon -->
+                                                                            {% linked_image "linkedin_icon" label="LinkedIn", align="right", alt="Join us on LinkedIn", height=50,  link="http://www.linkedin.com/groups?gid=3721035&amp;trk=myg_ugrp_ovr", src="http://www.cune.edu/files/3214/3345/1461/LinkendIn.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# LinkedIn Icon -->
+                                                                        <!-- #Start-HubHL# Instagram Icon -->
+                                                                            {% linked_image "instagram_icon" label="Instagram", align="right", alt="Follow us on Instagram", height=50, link="http://instagram.com/concordianebraska/", src="http://www.cune.edu/files/4414/3345/1461/Instagram.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Instagram Icon -->
+                                                                        <!-- #Start-HubHL# YouTube Icon -->
+                                                                            {% linked_image "youtube_icon" label="YouTube", align="right", alt="Subscribe on YouTube", height=50,  link="https://www.youtube.com/user/concordianebraska", src="http://www.cune.edu/files/1414/3345/1461/YouTube.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# YouTube Icon -->
+                                                                        <!-- #Start-HubHL# Google+ Icon -->
+                                                                            {% linked_image "google_icon" label="Google", align="right", alt="Follow us on Google+", height=50,  link="https://plus.google.com/107374583215130835483", src="http://www.cune.edu/files/5214/3345/1461/Google.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# YouTube Icon -->
+                                                                        <!-- #Start-HubHL# Google+ Icon -->
                                                                         </center>
                                                                     </td>
                                                                 </tr>
                                                                 <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
-                                                                    <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+                                                                    <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
                                                                 </tr>
                                                                 <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                                    <td class="center" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; text-align: center; border-collapse: collapse;">
+                                                                    <td class="center" style="padding: 0; vertical-align: top; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; text-align: center; border-collapse: collapse;">
                                                                         <center style="width: 100%; min-width: 580px;">
                                                                             <img src="http://www.cune.edu/files/6014/3344/9017/gohigher-hashtag-tan.png" height="42" width="132" id="go-higher-hashtag" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block; float: none;">
                                                                         </center>
                                                                     </td>
                                                                 </tr>
                                                                 <tr height="25" style="padding: 0; vertical-align: top; text-align: left;">
-                                                                    <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+                                                                    <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
                                                                 </tr>
                                                                 <tr style="padding: 0; vertical-align: top; text-align: left;">
-                                                                    <td id="opt-out" class="center" style="word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; margin: 0; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: center; color: #625b55; font-size: 10px; border-collapse: collapse;">
+                                                                    <td id="opt-out" class="center" style="padding: 0; vertical-align: top; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; text-align: center; color: #625b55; font-size: 10px; border-collapse: collapse;">
                                                                         <center style="width: 100%; min-width: 580px;">
-                                                                            Concordia University, Nebraska | 800 N Columbia Ave | Seward, NE 68434<br>
-                                                                            You received this email because you are subscribed to Undergraduate Admissions from Concordia University, Nebraska.<br>
-                                                                            If you prefer not to receive emails from Concordia University, Nebraska you may unsubscribe or set your email preferences.
+                                                                            {{ site_settings.company_name }} | {{ site_settings.company_street_address_1 }} | {{ site_settings.company_city }}, {{ site_settings.company_state }} {{ site_settings.company_zip }}<br>{{ unsubscribe_section }}
                                                                         </center>
                                                                     </td>
                                                                 </tr>
                                                                 <tr height="46" style="padding: 0; vertical-align: top; text-align: left;">
-                                                                    <td style="text-align: left; word-break: break-word; -moz-hyphens: auto; hyphens: auto; line-height: 19px; padding: 0; vertical-align: top; -webkit-hyphens: auto; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
+                                                                    <td style="padding: 0; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; margin: 0; line-height: 19px; font-size: 14px; border-collapse: collapse;">&nbsp;</td>
                                                                 </tr>
                                                             </table>
                                                         </td>
-                                                        <td class="expander" style="word-break: break-word; font-size: 14px; -moz-hyphens: auto; hyphens: auto; line-height: 19px; margin: 0; vertical-align: top; text-align: left; -webkit-hyphens: auto; font-weight: normal; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; width: 0px; visibility: hidden; padding: 0; border-collapse: collapse;"></td>
+                                                        <td class="expander" style="color: #222222; font-size: 14px; vertical-align: top; text-align: left; line-height: 19px; margin: 0; font-weight: normal; font-family: 'Helvetica', 'Arial', sans-serif; width: 0px; visibility: hidden; padding: 0; border-collapse: collapse;"></td>
                                                     </tr>
                                                 </table>                                                
                                             </td>
@@ -553,9 +969,9 @@
                             </td>
                         </tr>
                     </table>
-                </center>
-            </td>
-        </tr>
-    </table>
+                
+            
+        
+    
 </body>
 </html>

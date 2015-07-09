@@ -1,8 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <title>{% if content.html_title and content.html_title != '' %}{{ content.html_title }}{% else %}{{ content.body.subject }}{% endif %}</title>
+    {% if content.meta_description %}<meta name="description" content="{{ content.meta_description }}"/>{% endif %}
 
     <link type="text/css" rel="stylesheet" href="../css/ink.css" />
     <!-- Styles will be injected into <style> tag -->
@@ -18,6 +20,15 @@
                 <center>
                     <!-- Email Content -->
                     <span class="preview-text" style="display: none !important;">{% text "preview_text" label="Preview Text <span class=help-text>This will be used as the preview text displayed in the inbox of some email clients. It <strong>will not</strong> be displayed in the email. You should use between 50 - 85 characters.</span>", value="" %}</span>
+                    <!-- View as webpage link -->
+                    {% if content.create_page %}
+                        <div id="cune-web-option">
+                            Not rendering correctly? <a class="hubspot-mergetag" data-viewaswebpage="true" href="{{ view_as_page_url }}">View this email as a web page</a>.
+                        </div>
+                    {% endif %}
+                    <script type="application/ld+json">
+                        {% raw_html "json_ld" label='Enter JSON+ld <span class="help-text">Leverage Schema.org for better Gmail support</span>' %}
+                    </script>
                     <table id="header" width="100%">
                         <tr>
                             <td class="center" align="center">
@@ -35,7 +46,11 @@
                                                                     </td>
                                                                     <td class="six sub-columns last" align="right">
                                                                         <span class="template-label right" align="right">
-                                                                            <a href="#" class="cune-header-cta">Header CTA</a>
+                                                                            {% text "header_cta_label" label='Header CTA Label', export_to_template_context=True %}
+                                                                            {% text "header_cta_url" label='Header CTA url', export_to_template_context=True %}
+                                                                            {% if widget_data.header_cta_label.value and widget_data.header_cta_url.value != '' %}
+                                                                                <a href="{{ widget_data.header_cta_url.value }}" class="cune-header-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: rgba(255, 255, 255, 0.19999999999999996); padding: 12px 24px; text-align: right;">{{ widget_data.header_cta_label.value }}</a>
+                                                                            {% endif %}
                                                                         </span>
                                                                     </td>
                                                                     <td class="expander"></td>
@@ -64,7 +79,10 @@
                                                             <table class="columns twelve">
                                                                 <tr>
                                                                     <td>
+                                                                    <!-- End Header -->
+                                                                    <!-- Start Main -->
 <div data-hubspot-form-id="emailbody" class="hubspot-editable">
+    <!--
     <table width="100%" class="toc-box" align="center">
         <tr>
             <td class="">
@@ -83,31 +101,59 @@
             </td>
         </tr>
     </table>
+    -->
     <table class="cune-card">
-        <tr height="32">
+        <tr>
+            <td align="center">
+                <table width="100%" align="center" class="cune-story-image">
+                    <tr>
+                        <td align="center">
+                            <img src="http://www.cune.edu/files/7314/3292/5460/2TsYKDACXFhkgb07wkOF.jpg" alt="this is a test" />
+                            {% image "hero_image" label='Hero Image', alt='Hero Image', src='' width='580' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46">
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td> 
-                <table width="90%" class="cune-opening-content" align="center">
+            <td align="center">
+                <table width="85%" align="center" class="cune-story-headline">
                     <tr>
-                        <td>
-                            Hello CONTACT.PREFERRED_NAME,
-                            <br />
-                            <br />
-                            As I write to you, the campus has calmed greatly.
-                            <br />
-                            <br />
-                            It’s a strange dichotomy to have a campus that exists for the sole purpose of equipping men and women for a future of service be largely empty, save for the faculty and staff preparing for a new year to do just that. What makes the contrast even more dramatic is that the Concordia community is now descending off the mountaintop weekend of commencement and the Golden Reunion for the Class of 1965.
-                            <br />
-                            <br />
-                            The 90 classmates and guests of the Class of 1965 came together, some after 50 years apart, to this place and enjoyed looking back on a time of fond memories with great joy (see attendees and reunion details here). We are thankful that through their experience, the classmates decided to endow a $50,000 scholarship. This scholarship will certainly become a great blessing to future students for generations to come. Thank you, members of the Class of 1965—you have blessed our alma mater in many ways!
-                            <br />
-                            <br />
-                            We also celebrated 563 graduates earning master’s or bachelor’s degrees this year. These students are incredible alumni, ready to answer God’s call to learn, serve and lead in the church and world. I invite you to view the Class of 2015 video and hear our graduates reflect on their experiences at Concordia in their own words.
-                            <br />
-                            <br />
-                            Concordia University, Nebraska is so richly blessed. 
+                        <td align="center">
+                            {% text "main_headline" label='Main Headline', value="Speak to your audience" %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25">
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center">
+                <table width="78%" class="cune-story-content" align="center">
+                    <tr>
+                        <td align="center">
+                            {% rich_text "main_content" label="Main Content Area" html='<div>Tell them something they want to hear!</div>' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46">
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                <table class="cune-story-cta" align="center">
+                    <tr>
+                        <td align="center">
+                            <!-- Insert CTA -->
+                            {% rich_text "main_content_cta" label="Main Content CTA" html='<a href="#" class="cune-card-cta" style="text-decoration: none; color: #ffffff; border-radius: 3px; background-color: #002855; padding: 12px 24px;">Card CTA</a>' %}
+                            <!-- End CTA -->
                         </td>
                     </tr>
                 </table>
@@ -121,218 +167,589 @@
                 <table width="90%" align="center">
                     <tr>
                         <td class="wrapper last centered">
-                            <table class="cune-opening-content row" align="center">
-                                <tr>
-                                    <td class="wrapper">
-                                        <table class="columns three">
-                                            <tr>
-                                                <td class="center-content">
-                                                    <img src="http://www.cune.edu/files/cache/f8f409aceeab34c617023ae7e92c2201_f7658.jpg" alt="Photo of Adam Hengeveld" class="cune-teal circle-headshot" />
-                                                </td>
-                                                <td class="expander"></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td class="wrapper last">
-                                        <table class="columns seven">
-                                            <tr>
-                                                <td class="center-content">
-                                                    Adam Hengeveld<br />
-                                                    Director of Alumni &amp; University Relations<br />
-                                                    800.535.5494, ext. 7341<br />
-                                                    adam.hengeveld@cune.edu
-                                                </td>
-                                                <td class="expander"></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td class="expander"></td>
-                                </tr>
-                            </table>
+                            {% widget_block rich_text "sign_off" overrideable=True, label='Sign Off', no_wrapper=True  %}
+                                {% widget_attribute "html" %}
+                                <table class="cune-opening-content row" align="center">
+                                    <tr>
+                                        <td class="wrapper">
+                                            <table class="columns three">
+                                                    <td class="center-content">
+                                                        <img src="http://www.cune.edu/files/cache/f8f409aceeab34c617023ae7e92c2201_f7658.jpg" alt="Photo of Adam Hengeveld" class="cune-teal circle-headshot">
+                                                    </td>
+                                                    <td class="expander"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="wrapper last">
+                                            <table class="columns seven">
+                                                    <td class="center-content">
+                                                        Sign off here
+                                                    </td>
+                                                    <td class="expander"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="expander"></td>
+                                    </tr>
+                                </table>
+                                {% end_widget_attribute %}
+                            {% end_widget_block %}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="75">
+        <tr height="46">
             <td>&nbsp;</td>
         </tr>
     </table>
+    <!-- Start Extra Card 1 -->
+    {% text "article1_header" label='Article 1 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article1_content" label='Article 1 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article1_header.value and widget_data.article1_content.html != '' %}
     <table class="cune-card">
         <tr>
             <td align="center">
                 <table width="100%" align="center" class="cune-story-image">
-                    <tr>
-                        <td align="center">
-                            <img src="http://www.cune.edu/files/7314/3292/5460/2TsYKDACXFhkgb07wkOF.jpg" alt="this is a test" />
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% image "article1_hero_image" label='Article 1 Hero Image', alt='Article 1 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article1_header.value and widget_data.article1_content.html != '' %}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="46">
-            <td>&nbsp;</td>
+        <tr height="46" >
+            <td >&nbsp;</td>
         </tr>
-        <tr>
-            <td align="center">
-                <table width="85%" align="center" class="cune-story-headline">
-                    <tr>
-                        <td align="center">
-                            Spring term honors students named
+        <tr >
+            <td align="center" >
+                <table width="85%" align="center" class="cune-story-headline" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article1_header.value }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="25">
-            <td>&nbsp;</td>
+        <tr height="25" >
+            <td >&nbsp;</td>
         </tr>
-        <tr>
-            <td align="center">
-                <table width="78%" class="cune-story-content" align="center">
-                    <tr>
-                        <td align="center">
-                            The top 25 percent of all undergraduate students who complete at least 12 credit hours qualify for the honors list.
+        <tr >
+            <td align="center" >
+                <table width="78%" class="cune-story-content" align="center" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article1_content.html }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="46">
-            <td>&nbsp;</td>
+        <tr height="46" >
+            <td >&nbsp;</td>
         </tr>
-        <tr>
-            <td align="center" valign="top">
-                <table class="cune-story-cta" align="center">
-                    <tr>
-                        <td align="center">
-                            <a href="#" class="cune-card-cta">See the list</a>
+        <tr >
+            <td align="center" valign="top" >
+                <table class="cune-story-cta" align="center" >
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% rich_text "article1_cta" label="Article 1 CTA" html='<a href="#" class="cune-card-cta" >Card CTA</a>' %}
+                        {% if widget_data.article1_header.value and widget_data.article1_content.html != '' %}    
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="75">
+        <tr height="75" >
             <td>&nbsp;</td>
         </tr>
     </table>
+    {% endif %}
+    <!-- End Extra Card 1 -->
+    <!-- Start Extra Card 2 -->
+    {% text "article2_header" label='Article 2 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article2_content" label='Article 2 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article2_header.value and widget_data.article2_content.html != '' %}
     <table class="cune-card">
         <tr>
             <td align="center">
                 <table width="100%" align="center" class="cune-story-image">
-                    <tr>
-                        <td align="center">
-                            <img src="http://www.cune.edu/files/3114/3352/9467/WbC7xwlnPdIHGMASQiUs.jpg" alt="this is a test" />
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% image "article2_hero_image" label='Article 2 Hero Image', alt='Article 2 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article2_header.value and widget_data.article2_content.html != '' %}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="46">
-            <td>&nbsp;</td>
+        <tr height="46" >
+            <td >&nbsp;</td>
         </tr>
-        <tr>
-            <td align="center">
-                <table width="85%" align="center" class="cune-story-headline">
-                    <tr>
-                        <td align="center">
-                            Theatre honor society inducts new members
+        <tr >
+            <td align="center" >
+                <table width="85%" align="center" class="cune-story-headline" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article2_header.value }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="25">
-            <td>&nbsp;</td>
+        <tr height="25" >
+            <td >&nbsp;</td>
         </tr>
-        <tr>
-            <td align="center">
-                <table width="78%" class="cune-story-content" align="center">
-                    <tr>
-                        <td align="center">
-                            The Omega Lambda chapter of Alpha Psi Omega, a theatre national honor society, inducted new members this spring. The society recognizes student involvement in theatre arts programs.
+        <tr >
+            <td align="center" >
+                <table width="78%" class="cune-story-content" align="center" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article2_content.html }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="46">
-            <td>&nbsp;</td>
+        <tr height="46" >
+            <td >&nbsp;</td>
         </tr>
-        <tr>
-            <td align="center" valign="top">
-                <table class="cune-story-cta" align="center">
-                    <tr>
-                        <td align="center">
-                            <a href="#" class="cune-card-cta">See the Inductees</a>
+        <tr >
+            <td align="center" valign="top" >
+                <table class="cune-story-cta" align="center" >
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% rich_text "article2_cta" label="Article 2 CTA" html='<a href="#" class="cune-card-cta" >Card CTA</a>' %}
+                        {% if widget_data.article2_header.value and widget_data.article2_content.html != '' %}    
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="75">
+        <tr height="75" >
             <td>&nbsp;</td>
         </tr>
     </table>
+    {% endif %}
+    <!-- End Extra Card 2 -->
+    <!-- Start Extra Card 3 -->
+    {% text "article3_header" label='Article 3 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article2_content" label='Article 3 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article3_header.value and widget_data.article3_content.html != '' %}
     <table class="cune-card">
         <tr>
             <td align="center">
                 <table width="100%" align="center" class="cune-story-image">
-                    <tr>
-                        <td align="center">
-                            <img src="http://www.cune.edu/files/3114/3172/3866/0M5ENWGfTbS-rPQb38aM.jpg" alt="this is a test" />
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% image "article3_hero_image" label='Article 3 Hero Image', alt='Article 3 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article3_header.value and widget_data.article3_content.html != '' %}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="46">
-            <td>&nbsp;</td>
+        <tr height="46" >
+            <td >&nbsp;</td>
         </tr>
-        <tr>
-            <td align="center">
-                <table width="85%" align="center" class="cune-story-headline">
-                    <tr>
-                        <td align="center">
-                            May 2015 distinguished graduates
+        <tr >
+            <td align="center" >
+                <table width="85%" align="center" class="cune-story-headline" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article3_header.value }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="25">
-            <td>&nbsp;</td>
+        <tr height="25" >
+            <td >&nbsp;</td>
         </tr>
-        <tr>
-            <td align="center">
-                <table width="78%" class="cune-story-content" align="center">
-                    <tr>
-                        <td align="center">
-                            We announced our May 2015 graduates who graduated with distinction or high distinction honors based on their academic achievements.
+        <tr >
+            <td align="center" >
+                <table width="78%" class="cune-story-content" align="center" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article3_content.html }}
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="46">
-            <td>&nbsp;</td>
+        <tr height="46" >
+            <td >&nbsp;</td>
         </tr>
-        <tr>
-            <td align="center" valign="top">
-                <table class="cune-story-cta" align="center">
-                    <tr>
-                        <td align="center">
-                            <a href="#" class="cune-card-cta">Review the list</a>
+        <tr >
+            <td align="center" valign="top" >
+                <table class="cune-story-cta" align="center" >
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% rich_text "article3_cta" label="Article 3 CTA" html='<a href="#" class="cune-card-cta" >Card CTA</a>' %}
+                        {% if widget_data.article3_header.value and widget_data.article3_content.html != '' %}    
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr height="75">
+        <tr height="75" >
             <td>&nbsp;</td>
         </tr>
     </table>
+    {% endif %}
+    <!-- End Extra Card 3 -->
+    <!-- Start Extra Card 4 -->
+    {% text "article4_header" label='Article 4 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article4_content" label='Article 4 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article4_header.value and widget_data.article4_content.html != '' %}
+    <table class="cune-card">
+        <tr>
+            <td align="center">
+                <table width="100%" align="center" class="cune-story-image">
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% image "article4_hero_image" label='Article 4 Hero Image', alt='Article 4 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article4_header.value and widget_data.article4_content.html != '' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" >
+                <table width="85%" align="center" class="cune-story-headline" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article4_header.value }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" >
+                <table width="78%" class="cune-story-content" align="center" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article4_content.html }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" valign="top" >
+                <table class="cune-story-cta" align="center" >
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% rich_text "article4_cta" label="Article 4 CTA" html='<a href="#" class="cune-card-cta" >Card CTA</a>' %}
+                        {% if widget_data.article4_header.value and widget_data.article4_content.html != '' %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="75" >
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!-- End Extra Card 4 -->
+    <!-- Start Extra Card 5 -->
+    {% text "article5_header" label='Article 5 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article5_content" label='Article 5 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article5_header.value and widget_data.article5_content.html != '' %}
+    <table class="cune-card">
+        <tr>
+            <td align="center">
+                <table width="100%" align="center" class="cune-story-image">
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% image "article5_hero_image" label='Article 5 Hero Image', alt='Article 5 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article5_header.value and widget_data.article5_content.html != '' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" >
+                <table width="85%" align="center" class="cune-story-headline" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article5_header.value }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" >
+                <table width="78%" class="cune-story-content" align="center" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article5_content.html }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" valign="top" >
+                <table class="cune-story-cta" align="center" >
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% rich_text "article5_cta" label="Article 5 CTA" html='<a href="#" class="cune-card-cta" >Card CTA</a>' %}
+                        {% if widget_data.article5_header.value and widget_data.article5_content.html != '' %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="75" >
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!-- End Extra Card 5 -->
+    <!-- Start Extra Card 6 -->
+    {% text "article6_header" label='Article 6 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article6_content" label='Article 4 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article6_header.value and widget_data.article6_content.html != '' %}
+    <table class="cune-card">
+        <tr>
+            <td align="center">
+                <table width="100%" align="center" class="cune-story-image">
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% image "article6_hero_image" label='Article 6 Hero Image', alt='Article 6 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article6_header.value and widget_data.article6_content.html != '' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" >
+                <table width="85%" align="center" class="cune-story-headline" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article6_header.value }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" >
+                <table width="78%" class="cune-story-content" align="center" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article6_content.html }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" valign="top" >
+                <table class="cune-story-cta" align="center" >
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% rich_text "article6_cta" label="Article 6 CTA" html='<a href="#" class="cune-card-cta" >Card CTA</a>' %}
+                        {% if widget_data.article6_header.value and widget_data.article6_content.html != '' %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="75" >
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!-- End Extra Card 6 -->
+    <!-- Start Extra Card 7 -->
+    {% text "article7_header" label='Article 7 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article7_content" label='Article 7 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article7_header.value and widget_data.article7_content.html != '' %}
+    <table class="cune-card">
+        <tr>
+            <td align="center">
+                <table width="100%" align="center" class="cune-story-image">
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% image "article7_hero_image" label='Article 7 Hero Image', alt='Article 7 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article7_header.value and widget_data.article7_content.html != '' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" >
+                <table width="85%" align="center" class="cune-story-headline" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article7_header.value }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" >
+                <table width="78%" class="cune-story-content" align="center" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article7_content.html }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" valign="top" >
+                <table class="cune-story-cta" align="center" >
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% rich_text "article7_cta" label="Article 7 CTA" html='<a href="#" class="cune-card-cta" >Card CTA</a>' %}
+                        {% if widget_data.article7_header.value and widget_data.article7_content.html != '' %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="75" >
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!-- End Extra Card 7 -->
+    <!-- Start Extra Card 8 -->
+    {% text "article8_header" label='Article 8 Headline', export_to_template_context=True, no_wrapper=True %}
+    {% rich_text "article8_content" label='Article 8 Content', export_to_template_context=True, no_wrapper=True %}
+    {% if widget_data.article8_header.value and widget_data.article8_content.html != '' %}
+    <table class="cune-card">
+        <tr>
+            <td align="center">
+                <table width="100%" align="center" class="cune-story-image">
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% image "article8_hero_image" label='Article 8 Hero Image', alt='Article 8 Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326', width='580', style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border-radius: 3px 3px 0 0;' %}
+                        {% if widget_data.article8_header.value and widget_data.article8_content.html != '' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" >
+                <table width="85%" align="center" class="cune-story-headline" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article8_header.value }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="25" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" >
+                <table width="78%" class="cune-story-content" align="center" >
+                    <tr >
+                        <td align="center" >
+                            {{ widget_data.article8_content.html }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="46" >
+            <td >&nbsp;</td>
+        </tr>
+        <tr >
+            <td align="center" valign="top" >
+                <table class="cune-story-cta" align="center" >
+                    <tr >
+                        <td align="center" >
+                        {% endif %}
+                            {% rich_text "article8_cta" label="Article 8 CTA" html='<a href="#" class="cune-card-cta" >Card CTA</a>' %}
+                        {% if widget_data.article8_header.value and widget_data.article8_content.html != '' %}    
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="75" >
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!-- End Extra Card 8 -->
 </div>
+                                                                     <!-- End Main -->
+                                                                     <!-- Start Footer -->
                                                                      </td>
                                                                 </tr>
                                                             </table>
@@ -363,24 +780,25 @@
                                                                 <tr>
                                                                     <td id="social-media" class="center">
                                                                         <center>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/8014/3345/1331/Facebook.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/1414/3345/1461/YouTube.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/4414/3345/1461/Instagram.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/2814/3345/1461/Twitter.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/5214/3345/1461/Google.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
-                                                                            <a href="#">
-                                                                                <img src="http://www.cune.edu/files/3214/3345/1461/LinkendIn.png" class="hs-image-widget" width="50" alt="Join us on Facebook" title="Join us on Facebook" />
-                                                                            </a>
+                                                                        <!-- #Start-HubHL# Facebook Icon -->
+                                                                            {% linked_image "facebook_icon" label="Facebook", align="right", alt="Join us on Facebook", height=50,  link="https://www.facebook.com/concordianebraska", src="http://www.cune.edu/files/8014/3345/1331/Facebook.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Facebook Icon -->
+                                                                        <!-- #Start-HubHL# Twitter Icon -->
+                                                                            {% linked_image "twitter_icon" label="Twitter", align="right", alt="Follow us on Twitter", height=50,  link="https://www.twitter.com/cune", src="http://www.cune.edu/files/2814/3345/1461/Twitter.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Twitter Icon -->
+                                                                        <!-- #Start-HubHL# LinkedIn Icon -->
+                                                                            {% linked_image "linkedin_icon" label="LinkedIn", align="right", alt="Join us on LinkedIn", height=50,  link="http://www.linkedin.com/groups?gid=3721035&amp;trk=myg_ugrp_ovr", src="http://www.cune.edu/files/3214/3345/1461/LinkendIn.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# LinkedIn Icon -->
+                                                                        <!-- #Start-HubHL# Instagram Icon -->
+                                                                            {% linked_image "instagram_icon" label="Instagram", align="right", alt="Follow us on Instagram", height=50, link="http://instagram.com/concordianebraska/", src="http://www.cune.edu/files/4414/3345/1461/Instagram.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# Instagram Icon -->
+                                                                        <!-- #Start-HubHL# YouTube Icon -->
+                                                                            {% linked_image "youtube_icon" label="YouTube", align="right", alt="Subscribe on YouTube", height=50,  link="https://www.youtube.com/user/concordianebraska", src="http://www.cune.edu/files/1414/3345/1461/YouTube.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# YouTube Icon -->
+                                                                        <!-- #Start-HubHL# Google+ Icon -->
+                                                                            {% linked_image "google_icon" label="Google", align="right", alt="Follow us on Google+", height=50,  link="https://plus.google.com/107374583215130835483", src="http://www.cune.edu/files/5214/3345/1461/Google.png", width=50, style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 100%; clear: both; border: none; width: 43px; float: none; display: inline; margin: 0 3px;" %}
+                                                                        <!-- #End-HubHL# YouTube Icon -->
+                                                                        <!-- #Start-HubHL# Google+ Icon -->
                                                                         </center>
                                                                     </td>
                                                                 </tr>
@@ -400,9 +818,7 @@
                                                                 <tr>
                                                                     <td id="opt-out" class="center">
                                                                         <center>
-                                                                            Concordia University, Nebraska | 800 N Columbia Ave | Seward, NE 68434<br />
-                                                                            You received this email because you are subscribed to Undergraduate Admissions from Concordia University, Nebraska.<br />
-                                                                            If you prefer not to receive emails from Concordia University, Nebraska you may unsubscribe or set your email preferences.
+                                                                            {{ site_settings.company_name }} | {{ site_settings.company_street_address_1 }} | {{ site_settings.company_city }}, {{ site_settings.company_state }} {{ site_settings.company_zip }}<br />{{ unsubscribe_section }}
                                                                         </center>
                                                                     </td>
                                                                 </tr>
