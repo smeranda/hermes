@@ -7,8 +7,7 @@
                 <table width="100%" align="center" class="cune-story-image">
                     <tr>
                         <td align="center">
-                            <img src="http://www.cune.edu/files/7314/3292/5460/2TsYKDACXFhkgb07wkOF.jpg" alt="this is a test" />
-                            {% image "hero_image" label='Hero Image', alt='Hero Image', src='' width='580' %}
+                            {% image "hero_image" label='Hero Image', alt='Hero Image', src='https://placeholdit.imgix.net/~text?txtsize=50&txt=580%C3%97326&w=580&h=326' width='580' %}
                         </td>
                     </tr>
                 </table>
@@ -36,7 +35,7 @@
                 <table width="78%" class="cune-story-content" align="center">
                     <tr>
                         <td align="center">
-                            The top 25 percent of all undergraduate students who complete at least 12 credit hours qualify for the honors list.
+                            {% rich_text "main_content" label="Main Content Area" html='<div>Tell them something they want to hear!</div>' %}
                         </td>
                     </tr>
                 </table>
@@ -66,34 +65,33 @@
                 <table width="90%" align="center">
                     <tr>
                         <td class="wrapper last centered">
-                            <table class="cune-opening-content row" align="center">
-                                <tr>
-                                    <td class="wrapper">
-                                        <table class="columns three">
-                                            <tr>
-                                                <td class="center-content">
-                                                    <img src="http://www.cune.edu/files/cache/f8f409aceeab34c617023ae7e92c2201_f7658.jpg" alt="Photo of Adam Hengeveld" class="cune-teal circle-headshot" />
-                                                </td>
-                                                <td class="expander"></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td class="wrapper last">
-                                        <table class="columns seven">
-                                            <tr>
-                                                <td class="center-content">
-                                                    Adam Hengeveld<br />
-                                                    Director of Alumni &amp; University Relations<br />
-                                                    800.535.5494, ext. 7341<br />
-                                                    adam.hengeveld@cune.edu
-                                                </td>
-                                                <td class="expander"></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td class="expander"></td>
-                                </tr>
-                            </table>
+                            {% widget_block rich_text "sign_off" overrideable=True, label='Sign Off', no_wrapper=True  %}
+                                {% widget_attribute "html" %}
+                                <table class="cune-opening-content row" align="center">
+                                    <tr>
+                                        <td class="wrapper">
+                                            <table class="columns three">
+                                                    <td class="center-content">
+                                                        <img src="http://www.cune.edu/files/cache/f8f409aceeab34c617023ae7e92c2201_f7658.jpg" alt="Photo of Adam Hengeveld" class="cune-teal circle-headshot">
+                                                    </td>
+                                                    <td class="expander"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="wrapper last">
+                                            <table class="columns seven">
+                                                    <td class="center-content">
+                                                        Sign off here
+                                                    </td>
+                                                    <td class="expander"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="expander"></td>
+                                    </tr>
+                                </table>
+                                {% end_widget_attribute %}
+                            {% end_widget_block %}
                         </td>
                     </tr>
                 </table>
